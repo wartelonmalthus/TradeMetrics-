@@ -1,4 +1,4 @@
-@TradeMetrics.Api_HostAddress = http://localhost:5128
+@TradeMetrics.Api_HostAddress = http://localhost:5262
 
 GET {{TradeMetrics.Api_HostAddress}}/weatherforecast/
 Accept: application/json
