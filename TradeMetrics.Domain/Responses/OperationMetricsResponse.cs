@@ -2,7 +2,7 @@
 
 namespace TradeMetrics.Domain.Responses;
 
-public class OperationMetrics
+public class OperationMetricsResponse
 {
 	public CoinPair ParDeMoedas { get; set; }
 	public int TotalOperacoes { get; set; }
