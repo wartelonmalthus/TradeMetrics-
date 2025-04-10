@@ -8,23 +8,23 @@ namespace TradeMetrics.Infrastructure.Repositories;
 
 public class OperationRepository(TradeContext context) : BaseRepository<Operation>(context), IOperationRepository
 {
-	public Task<IEnumerable<Operation>> GetOperationsByFilterAsync(OperationMetricsFilterRequest filters)
+	public async Task<IEnumerable<Operation>> GetOperationsByFilterAsync(OperationMetricsFilterRequest filters)
 	{
 		var query = _context.Operacao.AsQueryable();
 
-		if (filters.ParDeMoedas is not null)
+		if (filters.ParDeMoedas.ToString() is not null)
 		{
-			query = query.Where(op => op.ParDeMoedas == filters.ParDeMoedas);
+			query = query.Where(op => op.ParDeMoedas.ToString() == filters.ParDeMoedas.ToString());
 		}
 
-		if (filters.Horario.HasValue)
+		if (filters.Horario.TotalHours > 0)
 		{
-			query = query.Where(op => op.Horario == filters.Horario.Value);
+			query = query.Where(op => op.Horario == filters.Horario);
 		}
 
-		if (filters.DataDaOperacao.HasValue)
+		if (filters.DataDaOperacao != null)
 		{
-			query = query.Where(op => op.DataDaOperacao.Date == filters.DataDaOperacao.Value.Date);
+			query = query.Where(op => op.DataDeCriacao == filters.DataDaOperacao);
 		}
 
 		return await query.ToListAsync();
