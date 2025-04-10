@@ -6,7 +6,7 @@ using TradeMetrics.Infrastructure.Interfaces;
 namespace TradeMetrics.Infrastructure.Repositories;
 public class BaseRepository<T> : IBaseRepository<T> where T : Register
 {
-	private readonly TradeContext _context;
+	public readonly TradeContext _context;
 	private readonly DbSet<T> _dbSet;
 
 	public BaseRepository(TradeContext context)
